@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Our pizzas! Tasty and delitious!</h1>
+    <ul>
+        {% for pizza in pizzas %}
+            <li>{{pizza.name}}</li>
+            <div class="">
+                <mark>Ingridients</mark>
+            </div>
+            {% for i in pizza.toppings.all %}
+                <ul>{{i.name}}</ul>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    <h1>Order your pizza now!</h1>
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        {% for field in order_form %}
+            <div>
+                {{ field.label_tag }} {{ field }}
+            </div>
+            {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>  
+            {% endif %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        <input type="submit" class="order" value="place order">
+        
+        <!-- <h3>Address: {{order_form.address}}</h3>
+        <h3>Choice: {{order_form.choice}}</h3>
+        {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+        <button type="submit" class="order" value="place_order">place_order</button> -->
+    </form>
+    <button class='more'>add more pizza</button>
+</body>
+<script>
+    let pizza = document.querySelector('.pizzas')
+    let order = document.querySelector('.order')
+    let more = document.querySelector('.more')
+    let form = document.querySelector('.form')
+
+    more.addEventListener('click', (e) => {
+        e.preventDefault()
+        p = document.createElement('p')
+        l = document.createElement('label')
+        l.setAttribute('for', 'id_choice')
+        l.textContent = 'Choice: '
+        cloned = pizza.cloneNode(true)
+        p.append(l)
+        p.append(cloned)
+        form.insertBefore(p, order)
+    })
+</script>
+</html>

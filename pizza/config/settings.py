@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'features',
-    'debug_toolbar',
+    'pizza',
+    'order',
+    # 'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_toolbar.middleware.DebugToolbarMiddleware',
+    # 'django_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -136,5 +138,5 @@ INTERNAL_IPS = [
 ]
 
 DEBUG_TOOLBAR_CONFIG = {
-    'RENDER_PANELS': True
+    'RENDER_PANELS': True,
 }
